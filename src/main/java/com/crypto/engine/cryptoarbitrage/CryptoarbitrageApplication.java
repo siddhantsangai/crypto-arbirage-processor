@@ -1,6 +1,6 @@
 package com.crypto.engine.cryptoarbitrage;
 
-import com.crypto.engine.cryptoarbitrage.processor.ProcessorBtcInr;
+import com.crypto.engine.cryptoarbitrage.triangularprocessors.WazirXTriangularArbitrageProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,15 +13,15 @@ public class CryptoarbitrageApplication {
 
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = SpringApplication.run(CryptoarbitrageApplication.class, args);
-		ProcessorBtcInr processor = context.getBean(ProcessorBtcInr.class);
-
+		WazirXTriangularArbitrageProcessor processor = context.getBean(WazirXTriangularArbitrageProcessor.class);
 		while(true){
 			try {
-				processor.process();
+				processor.process(5000);
+				//processor.process();
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("429 : [{\"message\":\"Too Many Requests\"}]");
 			}
-			Thread.sleep(10000);
+			Thread.sleep(4000);
 		}
 	}
 

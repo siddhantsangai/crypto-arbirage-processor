@@ -1,4 +1,4 @@
-package com.crypto.engine.cryptoarbitrage.templates;
+package com.crypto.engine.cryptoarbitrage.dao;
 
 import java.util.Map;
 
