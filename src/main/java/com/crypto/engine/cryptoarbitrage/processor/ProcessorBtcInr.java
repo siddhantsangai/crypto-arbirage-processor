@@ -43,14 +43,14 @@ public class ProcessorBtcInr {
         ordBk1.getAsks().forEach((key, value) -> ordBk2.getBids().entrySet()
                                                        .stream()
                                                        .filter(entry2 -> key < entry2.getKey())
-                                                       .max(Comparator.comparingDouble(Map.Entry::getValue)).ifPresent(entry2 -> log.info("Ask CoinDCX: " + key + " Bid WazirX: " + entry2.getKey()
+                                                       .max(Comparator.comparingDouble(Map.Entry::getValue)).ifPresent(entry2 -> log.info("Ask UnoCoin: " + key + " Bid WazirX: " + entry2.getKey()
                         + " Volume: " + Math.min(value, entry2.getValue()))));
 
         //leg2
         ordBk2.getAsks().forEach((key, value) -> ordBk1.getBids().entrySet()
                                                        .stream()
                                                        .filter(entry2 -> key < entry2.getKey())
-                                                       .max(Comparator.comparingDouble(Map.Entry::getValue)).ifPresent(entry2 -> log.info("Ask WazirX: " + key + " Bid CoinDCX: " + entry2.getKey()
+                                                       .max(Comparator.comparingDouble(Map.Entry::getValue)).ifPresent(entry2 -> log.info("Ask WazirX: " + key + " Bid UnoCoin: " + entry2.getKey()
                         + " Volume: " + Math.min(value, entry2.getValue()))));
 
         log.info(".......................................................");

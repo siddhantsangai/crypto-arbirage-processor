@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 @Component
-public class UnocoinExecutorBase  {
+public class UnocoinExecutorBase {
     private static final Logger log = LoggerFactory.getLogger(UnocoinExecutorBase.class);
 
     @Autowired
@@ -18,13 +18,11 @@ public class UnocoinExecutorBase  {
     @Autowired
     private ApplicationContext applicationContext;
 
-    private Boolean debug = true;
 
     @PostConstruct
     public void postStartup() {
         UnocoinDataExtractor unocoinDataExtractor = applicationContext.getBean(UnocoinDataExtractor.class);
-        taskExecutor.execute(unocoinDataExtractor );
-
+        taskExecutor.execute(unocoinDataExtractor);
     }
 }
 

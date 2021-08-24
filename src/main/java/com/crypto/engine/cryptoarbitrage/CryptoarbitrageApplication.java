@@ -24,8 +24,8 @@ public class CryptoarbitrageApplication {
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = SpringApplication.run(CryptoarbitrageApplication.class, args);
 
-
-		Thread.sleep(80000);
+		//Need to wait for Selenium to establish connection with firebase.
+		Thread.sleep(50000);
 		ProcessorBtcInr processor = context.getBean(ProcessorBtcInr.class);
 
 		while(true){
@@ -34,7 +34,7 @@ public class CryptoarbitrageApplication {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			Thread.sleep(10000);
+			Thread.sleep(40000);
 		}
 
 	}

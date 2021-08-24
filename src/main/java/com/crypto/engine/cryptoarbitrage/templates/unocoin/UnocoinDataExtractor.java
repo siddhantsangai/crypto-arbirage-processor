@@ -51,7 +51,7 @@ public class UnocoinDataExtractor implements Runnable {
                 String method = messageJSON.getJSONObject("message").getString("method");
                 if (method.equalsIgnoreCase("Network.webSocketFrameReceived")) {
                     String payLoadString = messageJSON.getJSONObject("message").getJSONObject("params").getJSONObject("response").getString("payloadData");
-                    log.info("Message Received: " + payLoadString);
+                    log.debug("Message Received: " + payLoadString);
 
                     if (payLoadString.contains("market_makers")) {
 
