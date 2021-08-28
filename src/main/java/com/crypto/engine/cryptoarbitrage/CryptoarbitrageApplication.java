@@ -14,14 +14,16 @@ public class CryptoarbitrageApplication {
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = SpringApplication.run(CryptoarbitrageApplication.class, args);
 		WazirXTriangularArbitrageProcessor processor = context.getBean(WazirXTriangularArbitrageProcessor.class);
+		processor.initializeProcessor();
 		while(true){
 			try {
-				processor.process(5000);
+				processor.startProcessing();
 				//processor.process();
+				//processor.getAllMarketTickers();
 			} catch (Exception e) {
-				System.out.println("429 : [{\"message\":\"Too Many Requests\"}]");
+				e.printStackTrace();
 			}
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 		}
 	}
 
