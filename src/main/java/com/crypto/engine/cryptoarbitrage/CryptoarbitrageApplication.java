@@ -1,6 +1,7 @@
 package com.crypto.engine.cryptoarbitrage;
 
-import com.crypto.engine.cryptoarbitrage.triangularprocessors.WazirXTriangularArbitrageProcessor;
+import com.crypto.engine.cryptoarbitrage.triangularprocessors.binance.UniversalTriangularArbitrageProcessor;
+import com.crypto.engine.cryptoarbitrage.triangularprocessors.statics.LegBlockInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -13,17 +14,15 @@ public class CryptoarbitrageApplication {
 
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext context = SpringApplication.run(CryptoarbitrageApplication.class, args);
-		WazirXTriangularArbitrageProcessor processor = context.getBean(WazirXTriangularArbitrageProcessor.class);
+		UniversalTriangularArbitrageProcessor processor = context.getBean(UniversalTriangularArbitrageProcessor.class);
 		processor.initializeProcessor();
 		while(true){
 			try {
 				processor.startProcessing();
-				//processor.process();
-				//processor.getAllMarketTickers();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			Thread.sleep(3000);
+			Thread.sleep(400);
 		}
 	}
 

@@ -229,6 +229,7 @@ public class WazirXTriangularArbitrageProcessor {
             for(int j=i+1;j<currencies.length;j++){
                 Leg leg2=createLeg(currencies[j],currencies[i]);
                 Leg leg3=createLeg(startAndEndCurrency,currencies[j]);
+                //If direct trading between any of the pairs is not possible, leg would be null and we dont create the block.
                 if(leg1!=null && leg2!=null  && leg3!=null)
                     legBlocks.add(Arrays.asList(leg1, leg2, leg3));
             }
@@ -274,7 +275,7 @@ public class WazirXTriangularArbitrageProcessor {
 
         //fetchOrderBooks();
         //System.out.println("Start Cycle...");
-        legBlocks.forEach(block-> processLegs(block.get(0), block.get(1), block.get(2), 1000, 0.998));
+        legBlocks.forEach(block-> processLegs(block.get(0), block.get(1), block.get(2), 2000, 0.998));
         //System.out.println("Cycle Complete...");
     }
 }
