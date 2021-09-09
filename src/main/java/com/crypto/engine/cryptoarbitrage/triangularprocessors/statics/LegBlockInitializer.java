@@ -15,8 +15,8 @@ public class LegBlockInitializer {
     @Value("${currencies}")
     private String listOfCurrencies;
 
-    @Value("${startCurrency}")
-    private String startAndEndCurrency;
+    @Value("${listOfStartAndEndCurrencies}")
+    private String listOfStartAndEndCurrencies;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -63,8 +63,10 @@ public class LegBlockInitializer {
 
     public void initializeLegBlocks(){
         getAllMarketTickers();
-        createLegBlocks(startAndEndCurrency);
-        System.out.println("List of currencies " + listOfCurrencies.toString());
+        String[] startAndEndCurrencies = listOfStartAndEndCurrencies.split(",");
+        Arrays.stream(startAndEndCurrencies).forEach(currency -> createLegBlocks(currency));
+        System.out.println("List of arbitrage currency candidates " + listOfCurrencies.toString());
+        System.out.println("List of start and end currencies " + listOfStartAndEndCurrencies);
         legBlocks.forEach(block-> {
             System.out.println("Block created: ");
             System.out.println(block.get(0).toString());
