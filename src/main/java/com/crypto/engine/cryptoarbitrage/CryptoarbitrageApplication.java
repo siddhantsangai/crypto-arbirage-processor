@@ -1,7 +1,6 @@
 package com.crypto.engine.cryptoarbitrage;
 
 import com.crypto.engine.cryptoarbitrage.triangularprocessors.binance.UniversalTriangularArbitrageProcessor;
-import com.crypto.engine.cryptoarbitrage.triangularprocessors.statics.LegBlockInitializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;

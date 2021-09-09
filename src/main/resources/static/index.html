@@ -1,0 +1,76 @@
+<body>
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+   
+  </body>
+
+<script>
+
+
+  /**/
+
+  // var ws;
+
+  // function connect() {
+  //   ws = new WebSocket('ws://localhost:8080/orderbook');
+  //   ws.onmessage = function(data) {
+  //     helloWorld(data.data);
+  //   }
+  // }
+
+  // function sendData(data) {
+  //   console.log("sending data: " + data)
+  //   ws.send(data);
+  // }
+
+  // connect();
+
+
+
+  /**/
+  var firebaseConfig = {
+  apiKey: "AIzaSyAObu6nepX1bx6CfI6L_8s20hUKehDErac",
+  authDomain: "unodax-a0cf9.firebaseapp.com",
+  databaseURL: "https://unodax-a0cf9.firebaseio.com",
+  projectId: "unodax-a0cf9",
+  storageBucket: "unodax-a0cf9.appspot.com",
+  messagingSenderId: "525651906416"
+};
+
+firebase.initializeApp(firebaseConfig);
+  firebase.setLogLevel("debug")
+  var database = firebase.database();
+
+  function getData(){
+    let path = "/intl_exchange/IN/INR/market_makers/ZEC";
+    var ordeBookRef = firebase.database().ref(path).orderByChild("rate");
+    console.log(ordeBookRef);
+    ordeBookRef
+    .once("value")
+    .then(function (snapshot) {
+      console.log(snapshot.val());
+      // sendData(snapshot.val())
+    })
+    .catch(function (error) {
+      console.log("Failed to send notification to user:", error);
+    });
+  }
+  // Initialize Firebase
+  
+
+  
+  // Fetch the user's email.
+  setInterval(getData, 40000 )
+</script>
+</body>
