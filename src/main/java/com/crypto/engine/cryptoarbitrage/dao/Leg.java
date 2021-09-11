@@ -5,6 +5,15 @@ public class Leg {
     private String buyCurrency;
     private String sellCurrency;
     private String quoteCurrency;
+    private String exchange;
+
+    public String getExchange() {
+        return exchange;
+    }
+
+    public void setExchange(String exchange) {
+        this.exchange = exchange;
+    }
 
     public String getTicker() {
         return ticker;
@@ -38,11 +47,12 @@ public class Leg {
         this.quoteCurrency = quoteCurrency;
     }
 
-    public Leg(String ticker, String buyCurrency, String sellCurrency, String quoteCurrency) {
+    public Leg(String ticker, String buyCurrency, String sellCurrency, String quoteCurrency, String exchange) {
         this.ticker = ticker;
         this.buyCurrency = buyCurrency;
         this.sellCurrency = sellCurrency;
         this.quoteCurrency = quoteCurrency;
+        this.exchange=exchange;
     }
 
     @Override
@@ -52,6 +62,7 @@ public class Leg {
                 ", buyCurrency='" + buyCurrency + '\'' +
                 ", sellCurrency='" + sellCurrency + '\'' +
                 ", quoteCurrency='" + quoteCurrency + '\'' +
+                ", exchange='" + exchange + '\'' +
                 '}';
     }
 }

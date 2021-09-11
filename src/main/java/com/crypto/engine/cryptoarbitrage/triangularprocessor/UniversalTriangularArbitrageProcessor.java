@@ -1,10 +1,10 @@
-package com.crypto.engine.cryptoarbitrage.triangularprocessors.binance;
+package com.crypto.engine.cryptoarbitrage.triangularprocessor;
 
 import com.crypto.engine.cryptoarbitrage.dao.GeneralOrderBook;
 import com.crypto.engine.cryptoarbitrage.dao.Leg;
 import com.crypto.engine.cryptoarbitrage.exchangetemplates.UniversalOrderBook;
 import com.crypto.engine.cryptoarbitrage.exchangetemplates.UniversalOrderBookTemplate;
-import com.crypto.engine.cryptoarbitrage.triangularprocessors.statics.LegBlockInitializer;
+import com.crypto.engine.cryptoarbitrage.triangularprocessor.statics.TriangularArbitrageLegBlockInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class UniversalTriangularArbitrageProcessor {
     private RestTemplate restTemplate;
 
     @Autowired
-    private LegBlockInitializer legBlockInitializer;
+    private TriangularArbitrageLegBlockInitializer triangularArbitrageLegBlockInitializer;
 
     @Value("${feeFactor}")
     private double feeFactor;
@@ -40,9 +40,9 @@ public class UniversalTriangularArbitrageProcessor {
         List<Double> priceLeg2;
         List<Double> priceLeg3;
         //System.out.println("New cycle - Fetching order book...");
-        fetchOrderBook(leg1.getTicker());
-        fetchOrderBook(leg2.getTicker());
-        fetchOrderBook(leg3.getTicker());
+        fetchOrderBook(leg1.getTicker(), leg1.getExchange());
+        fetchOrderBook(leg2.getTicker(), leg2.getExchange());
+        fetchOrderBook(leg3.getTicker(), leg3.getExchange());
         //System.out.println("Start Computation...");
         if(leg1.getBuyCurrency().equalsIgnoreCase(leg1.getQuoteCurrency())){
             valueAfterLeg1=processLegWhereBuyCurrencyIsEqualToQuoteCurrency(initialInvestment,feeFactor,leg1);
@@ -136,9 +136,9 @@ public class UniversalTriangularArbitrageProcessor {
     }
 
 
-    public void fetchOrderBook(String ticker){
+    public void fetchOrderBook(String ticker, String exchange){
         UniversalOrderBookTemplate orderBookTemplate = restTemplate.getForObject(
-                "http://localhost:3000/binance/orderbook/"+ticker, UniversalOrderBookTemplate.class);
+                String.format("http://localhost:3000/%s/orderbook/%s",exchange,ticker), UniversalOrderBookTemplate.class);
         orderBooks.put(ticker, parseOrderBook(orderBookTemplate.getData()));
     }
 
@@ -164,12 +164,12 @@ public class UniversalTriangularArbitrageProcessor {
     }
 
     public void initializeProcessor(){
-        legBlockInitializer.initializeLegBlocks();
+        triangularArbitrageLegBlockInitializer.initializeLegBlocks();
     }
 
     public void startProcessing(){
         orderBooks=new HashMap<>();
-        legBlockInitializer.getLegBlocks()
+        triangularArbitrageLegBlockInitializer.getLegBlocks()
                 .forEach(block-> processLegs(block.get(0), block.get(1), block.get(2), initialInvestment, feeFactor));
     }
 }

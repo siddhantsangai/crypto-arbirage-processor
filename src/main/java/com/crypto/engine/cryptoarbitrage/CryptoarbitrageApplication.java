@@ -1,6 +1,6 @@
 package com.crypto.engine.cryptoarbitrage;
 
-import com.crypto.engine.cryptoarbitrage.triangularprocessors.binance.UniversalTriangularArbitrageProcessor;
+import com.crypto.engine.cryptoarbitrage.triangularprocessor.UniversalTriangularArbitrageProcessor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -21,7 +21,7 @@ public class CryptoarbitrageApplication {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			Thread.sleep(400);
+			Thread.sleep(100);
 		}
 	}
 

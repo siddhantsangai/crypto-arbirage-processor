@@ -1,4 +1,4 @@
-package com.crypto.engine.cryptoarbitrage.triangularprocessors;
+package com.crypto.engine.cryptoarbitrage.triangularprocessor;
 
 import com.crypto.engine.cryptoarbitrage.dao.GeneralOrderBook;
 import com.crypto.engine.cryptoarbitrage.exchangetemplates.CoinDCXOrderBook;

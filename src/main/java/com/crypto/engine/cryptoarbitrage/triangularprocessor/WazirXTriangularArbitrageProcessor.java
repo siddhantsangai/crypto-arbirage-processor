@@ -1,4 +1,4 @@
-package com.crypto.engine.cryptoarbitrage.triangularprocessors;
+package com.crypto.engine.cryptoarbitrage.triangularprocessor;
 
 import com.crypto.engine.cryptoarbitrage.dao.GeneralOrderBook;
 import com.crypto.engine.cryptoarbitrage.dao.Leg;
@@ -242,12 +242,12 @@ public class WazirXTriangularArbitrageProcessor {
         if(marketTickers.containsKey(ticker)){
             setOfRequiredOrderBooks.add(ticker);
             WazirXMarketTicker tickerDetails = marketTickers.get(ticker);
-            return new Leg(ticker,buyCurrency,sellCurrency,tickerDetails.getQuoteAsset());
+            return new Leg(ticker,buyCurrency,sellCurrency,tickerDetails.getQuoteAsset(),"wazirx");
         }
         else if(marketTickers.containsKey(reverseTicker)){
             setOfRequiredOrderBooks.add(reverseTicker);
             WazirXMarketTicker tickerDetails = marketTickers.get(reverseTicker);
-            return new Leg(reverseTicker,buyCurrency,sellCurrency,tickerDetails.getQuoteAsset());
+            return new Leg(reverseTicker,buyCurrency,sellCurrency,tickerDetails.getQuoteAsset(),"wazirx");
         }
         return null;
     }
