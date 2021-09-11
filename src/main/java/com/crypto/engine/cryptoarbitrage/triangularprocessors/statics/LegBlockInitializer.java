@@ -23,6 +23,8 @@ public class LegBlockInitializer {
     private HashMap<String, UniversalMarketTicker> marketTickers = new HashMap<>();
     private List<List<Leg>> legBlocks = new ArrayList<>();
 
+    private Set<String> listOfSymbols = new HashSet<>();
+
     public List<List<Leg>> getLegBlocks() {
         return legBlocks;
     }
@@ -68,10 +70,14 @@ public class LegBlockInitializer {
         System.out.println("List of arbitrage currency candidates " + listOfCurrencies.toString());
         System.out.println("List of start and end currencies " + listOfStartAndEndCurrencies);
         legBlocks.forEach(block-> {
+            listOfSymbols.add(block.get(0).getTicker());
+            listOfSymbols.add(block.get(1).getTicker());
+            listOfSymbols.add(block.get(2).getTicker());
             System.out.println("Block created: ");
             System.out.println(block.get(0).toString());
             System.out.println(block.get(1).toString());
             System.out.println(block.get(2).toString());
         });
+        System.out.println(listOfSymbols.toString());
     }
 }

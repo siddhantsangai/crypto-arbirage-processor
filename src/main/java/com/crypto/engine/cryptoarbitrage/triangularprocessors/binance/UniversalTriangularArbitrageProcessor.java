@@ -96,11 +96,11 @@ public class UniversalTriangularArbitrageProcessor {
             int indexOfPriceInLeg1=(maxOutputValueIndex/(lenLeg2*lenLeg3))%lenLeg1;
             int indexOfPriceInLeg2=(maxOutputValueIndex/lenLeg3)%lenLeg2;
             int indexOfPriceInLeg3=maxOutputValueIndex%lenLeg3;
-            System.out.println(new java.util.Date() + " ...Arb opportunity found...");
-            System.out.println("Buy " + leg1.getBuyCurrency() + " at price " + priceLeg1.get(indexOfPriceInLeg1) + " " + leg1.getQuoteCurrency());
-            System.out.println("Buy " + leg2.getBuyCurrency() + " at price " + priceLeg2.get(indexOfPriceInLeg2) + " " + leg2.getQuoteCurrency());
-            System.out.println("Buy " + leg3.getBuyCurrency() + " at price " + priceLeg3.get(indexOfPriceInLeg3) + " " + leg3.getQuoteCurrency());
-            System.out.println("If initial investment=" + initialInvestment + " return= " + maxOutputValue);
+            System.out.println(new java.util.Date());
+            System.out.println("Buy Currency: " + leg1.getBuyCurrency() + " Sell Currency: " + leg1.getSellCurrency() + " at: " + priceLeg1.get(indexOfPriceInLeg1) + " Quote Currency: " + leg1.getQuoteCurrency());
+            System.out.println("Buy Currency: " + leg2.getBuyCurrency() + " Sell Currency: " + leg2.getSellCurrency() + " at: " + priceLeg2.get(indexOfPriceInLeg2) + " Quote Currency: " + leg2.getQuoteCurrency());
+            System.out.println("Buy Currency: " + leg3.getBuyCurrency() + " Sell Currency: " + leg3.getSellCurrency() + " at: " + priceLeg3.get(indexOfPriceInLeg3) + " Quote Currency: " + leg3.getQuoteCurrency());
+            System.out.println("If initial investment=" + initialInvestment + " " + leg1.getSellCurrency() + ", return= " + maxOutputValue + " " + leg3.getBuyCurrency());
             System.out.println("...........................");
         }
         //System.out.println("Computation Complete...");
