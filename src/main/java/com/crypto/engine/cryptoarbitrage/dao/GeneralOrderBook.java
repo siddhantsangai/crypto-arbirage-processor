@@ -21,4 +21,12 @@ public class GeneralOrderBook {
     public void setBids(Map<Double, Double> bids) {
         this.bids = bids;
     }
+
+    @Override
+    public String toString() {
+        return "GeneralOrderBook{" +
+                "asks=" + asks.toString() +
+                ", bids=" + bids.toString() +
+                '}';
+    }
 }

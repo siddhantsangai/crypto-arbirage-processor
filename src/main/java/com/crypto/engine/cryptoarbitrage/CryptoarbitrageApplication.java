@@ -21,7 +21,7 @@ public class CryptoarbitrageApplication {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			Thread.sleep(100);
+			Thread.sleep(500);
 		}
 	}
 

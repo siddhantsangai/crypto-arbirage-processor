@@ -139,7 +139,19 @@ public class UniversalTriangularArbitrageProcessor {
     public void fetchOrderBook(String ticker, String exchange){
         UniversalOrderBookTemplate orderBookTemplate = restTemplate.getForObject(
                 String.format("http://localhost:3000/%s/orderbook/%s",exchange,ticker), UniversalOrderBookTemplate.class);
-        orderBooks.put(ticker, parseOrderBook(orderBookTemplate.getData()));
+        GeneralOrderBook temp=parseOrderBook(orderBookTemplate.getData());
+        orderBooks.put(ticker, temp);
+
+//        if(ticker.equals("BTCEUR")) {
+//            System.out.println(new java.util.Date());
+//            System.out.println("Exchange: " + exchange + " Ticker: " + ticker);
+//            Set<Double> a = temp.getBids().keySet();
+//            Double[] b = new Double[a.size()];
+//            a.toArray(b);
+//            List<Double> temp2 = Arrays.asList(b);
+//            Collections.sort(temp2);
+//            System.out.println(temp2);
+//        }
     }
 
     public GeneralOrderBook parseOrderBook(UniversalOrderBook orderBook) {
